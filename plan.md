@@ -20,7 +20,7 @@ lib/
     profile/
   widgets/
 
-- [ ]  Configure pubspec.yaml for assets (sounds, icons)
+- [x]  Configure pubspec.yaml for assets (sounds, icons)
 - [ ]  Test initial run on Android & iOS
 
  Phase 2 — Brightness & Theme
