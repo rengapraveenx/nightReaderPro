@@ -2,13 +2,13 @@
  Phase 1 — Setup & Base Project
 
 - [x]  Create Flutter project night_reader
-- [ ]  Add dependencies:
-    - [ ]  audioplayers
-    - [ ]  wakelock_plus
-    - [ ]  shared_preferences
-    - [ ]  provider or riverpod
-    - [ ]  flutter_animate or lottie
-    - [ ]  share_plus
+- [x]  Add dependencies:
+    - [x]  audioplayers
+    - [x]  wakelock_plus
+    - [x]  shared_preferences
+    - [x]  provider or riverpod
+    - [x]  flutter_animate or lottie
+    - [x]  share_plus
 - [ ]  Setup folder structure:
 lib/
   core/
