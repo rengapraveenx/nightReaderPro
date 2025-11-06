@@ -9,7 +9,7 @@
     - [x]  provider or riverpod
     - [x]  flutter_animate or lottie
     - [x]  share_plus
-- [ ]  Setup folder structure:
+- [x]  Setup folder structure:
 lib/
   core/
     theme/
