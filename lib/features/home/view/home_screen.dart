@@ -1,0 +1,74 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/theme_manager.dart';
+import '../manager/brightness_manager.dart';
+import 'widgets/bottom_control_bar.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Consumer2<ThemeManager, BrightnessManager>(
+        builder: (context, themeManager, brightnessManager, __) {
+          return GestureDetector(
+            onVerticalDragUpdate: (details) {
+              if (details.primaryDelta! < 0) {
+                brightnessManager.increaseBrightness();
+              } else {
+                brightnessManager.decreaseBrightness();
+              }
+            },
+            onHorizontalDragEnd: (details) {
+              themeManager.nextTheme();
+            },
+            onLongPress: () {
+              brightnessManager.toggleLock();
+            },
+            child: Stack(
+              children: [
+                Animate(
+                  effects: const [FadeEffect()],
+                  child: Container(
+                    key: ValueKey(themeManager.currentTheme),
+                    decoration: BoxDecoration(
+                      gradient: AppTheme.getGradient(themeManager.currentTheme),
+                    ),
+                    alignment: Alignment.center,
+                    child: AnimatedOpacity(
+                      opacity: brightnessManager.brightness,
+                      duration: const Duration(milliseconds: 300),
+                      child: Text(
+                        brightnessManager.isLocked ? 'Brightness Locked' : 'Night Reader',
+                        style: const TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 50,
+                  right: 20,
+                  child: AnimatedOpacity(
+                    opacity: brightnessManager.isLocked ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 300),
+                    child: const Icon(
+                      Icons.lock,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      bottomNavigationBar: const BottomControlBar(),
+    );
+  }
+}

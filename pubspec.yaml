@@ -37,9 +37,11 @@ dependencies:
   audioplayers: ^6.5.1
   wakelock_plus: ^1.4.0
   shared_preferences: ^2.5.3
-  flutter_riverpod: ^3.0.3
+  provider: ^6.1.2
   flutter_animate: ^4.5.2
   share_plus: ^12.0.1
+  screen_brightness: ^2.1.7
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +53,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -67,6 +71,7 @@ flutter:
   assets:
     - assets/sounds/
     - assets/icons/
+    - assets/privacy_policy.html
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -93,3 +98,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter_native_splash:
+  color: "#000000"
+  image: "assets/icons/splash_icon.png"
+  android: true
+  ios: true
+  web: false
