@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 
@@ -34,6 +35,7 @@ class BrightnessManager extends ChangeNotifier {
   }
 
   void toggleLock() {
+    FirebaseCrashlytics.instance.log('User clicked brightness lock button');
     _isLocked = !_isLocked;
     notifyListeners();
   }

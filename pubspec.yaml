@@ -43,6 +43,7 @@ dependencies:
   screen_brightness: ^2.1.7
   url_launcher: ^6.3.0
   firebase_crashlytics: ^5.0.4
+  firebase_core: ^4.2.1
 
 dev_dependencies:
   flutter_test:
