@@ -42,6 +42,7 @@ dependencies:
   share_plus: ^12.0.1
   screen_brightness: ^2.1.7
   url_launcher: ^6.3.0
+  firebase_crashlytics: ^5.0.4
 
 dev_dependencies:
   flutter_test:
@@ -114,9 +115,20 @@ flutter_launcher_icons:
     generate: true
     image_path: "assets/images/app-icon.png"
 
+# Flutter Native Splash configuration
 flutter_native_splash:
-  color: "#000000"
-  image: "assets/icons/splash_icon.png"
-  android: true
-  ios: true
-  web: false
+  color: "#804eb1"
+  color_android: "#804eb1"
+  color_dark_android: "#121212"
+  color_ios: "#804eb1"
+  color_dark_ios: "#121212"
+  color_web: "#804eb1"
+  color_dark_web: "#121212"
+  image: "assets/images/app-icon-foreground.png"
+  android_12:
+    color: "#804eb1"
+    icon_background_color: "#804eb1"
+    image: "assets/images/app-icon-foreground.png"
+    color_dark: "#121212"
+    icon_background_color_dark: "#121212"
+    image_dark: "assets/images/app-icon-foreground.png"
