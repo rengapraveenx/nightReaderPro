@@ -1,11 +1,6 @@
-
 import 'package:flutter/material.dart';
 
-enum AppThemeType {
-  warm,
-  cool,
-  normal,
-}
+enum AppThemeType { warm, cool, normal }
 
 class AppTheme {
   static final Map<AppThemeType, ThemeData> _themes = {
@@ -28,7 +23,7 @@ class AppTheme {
 
   static final Map<AppThemeType, Gradient> gradients = {
     AppThemeType.normal: const LinearGradient(
-      colors: [Colors.black, Colors.black87],
+      colors: [Colors.white, Colors.white],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
@@ -43,9 +42,24 @@ class HomeScreen extends StatelessWidget {
                     child: AnimatedOpacity(
                       opacity: brightnessManager.brightness,
                       duration: const Duration(milliseconds: 300),
-                      child: Text(
-                        brightnessManager.isLocked ? 'Brightness Locked' : 'Night Reader',
-                        style: const TextStyle(color: Colors.white, fontSize: 24),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black12.withAlpha(50),
+                        ),
+                        child: Text(
+                          brightnessManager.isLocked
+                              ? 'Brightness Locked'
+                              : 'Night Reader',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
+                        ),
                       ),
                     ),
                   ),
