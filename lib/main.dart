@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,9 +10,11 @@ import 'features/home/view/home_screen.dart';
 import 'features/onboarding/view/onboarding_screen.dart';
 import 'features/sound/manager/sound_manager.dart';
 import 'features/timer/manager/timer_manager.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final prefs = await SharedPreferences.getInstance();
   final showOnboarding = prefs.getBool('onboarding_complete') ?? false;
   runApp(MyApp(showOnboarding: showOnboarding));
