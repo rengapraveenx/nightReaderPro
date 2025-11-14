@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:nightreader/service/update_checker_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -7,8 +8,31 @@ import '../../../core/theme/theme_manager.dart';
 import '../manager/brightness_manager.dart';
 import 'widgets/bottom_control_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Check update for returning users
+      UpdateCheckerService(context).checkForUpdate();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HomeScreenStl();
+  }
+}
+
+class HomeScreenStl extends StatelessWidget {
+  const HomeScreenStl({super.key});
 
   @override
   Widget build(BuildContext context) {
