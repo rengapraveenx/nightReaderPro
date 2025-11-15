@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nightreader/features/timer/manager/timer_manager.dart';
 import 'package:provider/provider.dart';

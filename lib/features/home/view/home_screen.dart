@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:nightreader/service/update_checker_service.dart';
+import 'package:nightreader/features/in_app_review/service/in_app_review_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // Check update for returning users
       UpdateCheckerService(context).checkForUpdate();
+      Provider.of<InAppReviewService>(context, listen: false).requestReview();
     });
   }
 

@@ -3,6 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nightreader/firebase_options.dart';
+import 'package:nightreader/features/in_app_review/service/in_app_review_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,17 +35,30 @@ Future<void> main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final showOnboarding = prefs.getBool('onboarding_complete') ?? false;
-  runApp(MyApp(showOnboarding: showOnboarding));
+  final inAppReviewService = InAppReviewService(prefs);
+  await inAppReviewService.incrementAppOpenCount();
+  runApp(
+    MyApp(
+      showOnboarding: showOnboarding,
+      inAppReviewService: inAppReviewService,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   final bool showOnboarding;
-  const MyApp({super.key, required this.showOnboarding});
+  final InAppReviewService inAppReviewService;
+  const MyApp({
+    super.key,
+    required this.showOnboarding,
+    required this.inAppReviewService,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider.value(value: inAppReviewService),
         ChangeNotifierProvider(create: (_) => BrightnessManager()),
         ChangeNotifierProvider(create: (_) => ThemeManager()),
         ChangeNotifierProvider(create: (_) => SoundManager()),

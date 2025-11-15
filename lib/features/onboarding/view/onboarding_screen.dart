@@ -37,27 +37,48 @@ class OnboardingScreen extends StatelessWidget {
               const SizedBox(height: 40),
               const ListTile(
                 leading: Icon(Icons.swipe_up, color: Colors.black),
-                title: Text('Swipe Up: Increase Brightness', style: TextStyle(color: Colors.black)),
+                title: Text(
+                  'Swipe Up: Increase Brightness',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.swipe_down, color: Colors.black),
-                title: Text('Swipe Down: Decrease Brightness', style: TextStyle(color: Colors.black)),
+                title: Text(
+                  'Swipe Down: Decrease Brightness',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const ListTile(
-                leading: Icon(Icons.swipe_left_alt_outlined, color: Colors.black),
-                title: Text('Swipe Left/Right: Change Color Theme', style: TextStyle(color: Colors.black)),
+                leading: Icon(
+                  Icons.swipe_left_alt_outlined,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Swipe Left/Right: Change Color Theme',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.touch_app, color: Colors.black),
-                title: Text('Long Press: Lock/Unlock Brightness', style: TextStyle(color: Colors.black)),
+                title: Text(
+                  'Long Press: Lock/Unlock Brightness',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.timer, color: Colors.black),
-                title: Text('Sleep Timer: Set a timer to turn off the screen', style: TextStyle(color: Colors.black)),
+                title: Text(
+                  'Sleep Timer: Set a timer to turn off the screen',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.music_note, color: Colors.black),
-                title: Text('Music: Play/Pause, Volume Up/Down', style: TextStyle(color: Colors.black)),
+                title: Text(
+                  'Music: Play/Pause, Volume Up/Down',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const SizedBox(height: 40),
               ElevatedButton(

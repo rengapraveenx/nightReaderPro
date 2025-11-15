@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +28,8 @@ class ThemeManager extends ChangeNotifier {
   }
 
   void nextTheme() {
-    final nextThemeIndex = (_currentTheme.index + 1) % AppThemeType.values.length;
+    final nextThemeIndex =
+        (_currentTheme.index + 1) % AppThemeType.values.length;
     setTheme(AppThemeType.values[nextThemeIndex]);
   }
 }

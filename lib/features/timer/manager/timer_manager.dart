@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nightreader/features/home/manager/brightness_manager.dart';
 import 'package:nightreader/features/sound/manager/sound_manager.dart';
 
-enum TimerPreset {
-  infinite,
-  thirtyMinutes,
-  oneHour,
-  custom,
-}
+enum TimerPreset { infinite, thirtyMinutes, oneHour, custom }
 
 class TimerManager extends ChangeNotifier {
   final BrightnessManager _brightnessManager;
