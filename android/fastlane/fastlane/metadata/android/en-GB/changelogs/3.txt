@@ -1,0 +1,5 @@
+- feeat: in-app review added
+- feat: fource update done
+- feat: crashlatics added
+- splash screen workds
+- recommited the revoked app icon by using iconkitchen

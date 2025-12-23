@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 import 'package:nightreader/features/timer/manager/timer_manager.dart';
+import 'package:nightreader/service/analytics_log.dart';
 import 'package:provider/provider.dart';
 
 import 'profile_bottom_sheet.dart';
@@ -7,6 +9,7 @@ import 'sound_bottom_sheet.dart';
 import 'theme_bottom_sheet.dart';
 import 'timer_bottom_sheet.dart';
 
+@Preview(name: 'Widget Constructor')
 class BottomControlBar extends StatelessWidget {
   const BottomControlBar({super.key});
 
@@ -47,12 +50,24 @@ class BottomControlBar extends StatelessWidget {
               builder: (context) {
                 switch (index) {
                   case 0:
+                    AnalyticsLog().logSimpleEvent(
+                      title: 'timer_bottom_sheet_opened',
+                    );
                     return const TimerBottomSheet();
                   case 1:
+                    AnalyticsLog().logSimpleEvent(
+                      title: 'theme_bottom_sheet_opened',
+                    );
                     return const ThemeBottomSheet();
                   case 2:
+                    AnalyticsLog().logSimpleEvent(
+                      title: 'sound_bottom_sheet_opened',
+                    );
                     return const SoundBottomSheet();
                   case 3:
+                    AnalyticsLog().logSimpleEvent(
+                      title: '_bottom_sheet_opened',
+                    );
                     return const ProfileBottomSheet();
                   default:
                     return const SizedBox.shrink();

@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nightreader/firebase_options.dart';
 import 'package:nightreader/features/in_app_review/service/in_app_review_service.dart';
+import 'package:nightreader/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,6 +78,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<ThemeManager>(
         builder: (context, themeManager, __) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Night Reader',
             theme: AppTheme.getTheme(themeManager.currentTheme),
             home: showOnboarding

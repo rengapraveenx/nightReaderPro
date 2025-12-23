@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nightreader/features/timer/manager/timer_manager.dart';
+import 'package:nightreader/service/analytics_log.dart';
 import 'package:provider/provider.dart';
 
 class TimerBottomSheet extends StatelessWidget {
@@ -24,18 +25,28 @@ class TimerBottomSheet extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(
-                    onPressed: () =>
-                        timerManager.setPreset(TimerPreset.infinite),
+                    onPressed: () {
+                      AnalyticsLog().logSimpleEvent(
+                        title: 'timer_infinite_pressed',
+                      );
+                      timerManager.setPreset(TimerPreset.infinite);
+                    },
                     child: const Text('Infinite'),
                   ),
                   ElevatedButton(
-                    onPressed: () =>
-                        timerManager.setPreset(TimerPreset.thirtyMinutes),
+                    onPressed: () {
+                      AnalyticsLog().logSimpleEvent(
+                        title: 'timer_30min_pressed',
+                      );
+                      timerManager.setPreset(TimerPreset.thirtyMinutes);
+                    },
                     child: const Text('30 Min'),
                   ),
                   ElevatedButton(
-                    onPressed: () =>
-                        timerManager.setPreset(TimerPreset.oneHour),
+                    onPressed: () {
+                      AnalyticsLog().logSimpleEvent(title: 'timer_1hr_pressed');
+                      timerManager.setPreset(TimerPreset.oneHour);
+                    },
                     child: const Text('1 Hour'),
                   ),
                 ],

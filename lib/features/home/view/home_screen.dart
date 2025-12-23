@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:nightreader/service/update_checker_service.dart';
 import 'package:nightreader/features/in_app_review/service/in_app_review_service.dart';
+import 'package:nightreader/service/update_checker_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -110,5 +111,10 @@ class HomeScreenStl extends StatelessWidget {
       ),
       bottomNavigationBar: const BottomControlBar(),
     );
+  }
+
+  @Preview(name: 'My Sample Text')
+  Widget _deeemo() {
+    return Padding(padding: EdgeInsets.all(10), child: Text("uff"));
   }
 }

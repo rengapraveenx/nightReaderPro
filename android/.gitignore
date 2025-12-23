@@ -12,3 +12,11 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+
+android/key.properties
+android/app/*.jks
+
+# Fastlane Play Store service account
+nightreader-*.json
+android/fastlane/*.json
+android/fastlane/**/*.json

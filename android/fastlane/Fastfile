@@ -1,0 +1,59 @@
+default_platform(:android)
+
+require "fileutils"
+
+# ---------------------------
+# Helpers
+# ---------------------------
+
+def increment_flutter_build_number
+  pubspec = File.expand_path("../../pubspec.yaml", __dir__)
+
+  content = File.read(pubspec)
+  line = content.lines.find { |l| l.start_with?("version:") }
+
+  UI.user_error!("❌ version not found in pubspec.yaml") unless line
+
+  version_name, build = line.strip.split("+")
+  new_build = build.to_i + 1
+  new_version = "#{version_name}+#{new_build}"
+
+  File.write(pubspec, content.sub(line.strip, new_version))
+
+  UI.message("🚀 Updated version to #{new_version}")
+  new_build
+end
+
+def generate_changelog(version_code, lang = "en-GB")
+  base = "fastlane/metadata/android/#{lang}/changelogs"
+  FileUtils.mkdir_p(base)
+
+  changelog = sh(
+    "git log -5 --pretty=format:'- %s'",
+    log: false
+  )
+
+  File.write("#{base}/#{version_code}.txt", changelog)
+  UI.message("📝 Changelog written for #{lang}, versionCode #{version_code}")
+end
+
+# ---------------------------
+# Lane
+# ---------------------------
+
+lane :playstore do
+  version_code = increment_flutter_build_number
+  generate_changelog(version_code, "en-GB")
+
+  sh("cd .. && flutter clean")
+  sh("cd .. && flutter build appbundle")
+
+  upload_to_play_store(
+    track: "internal",
+    aab: "../build/app/outputs/bundle/release/app-release.aab",
+    skip_upload_metadata: false,
+    skip_upload_images: false,
+    skip_upload_screenshots: false,
+    skip_upload_changelogs: false
+  )
+end

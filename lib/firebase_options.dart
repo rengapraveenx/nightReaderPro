@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'nightreaderpro.firebasestorage.app',
     measurementId: 'G-TEJC9QQJ8N',
   );
+
 }
