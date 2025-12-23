@@ -44,7 +44,6 @@ flutter:
     - assets/sounds/
     - assets/icons/
     - assets/privacy_policy.html
-    - .env
 
 # Flutter Launcher Icons configuration
 flutter_launcher_icons:
