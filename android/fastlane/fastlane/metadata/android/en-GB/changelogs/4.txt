@@ -1,0 +1,5 @@
+- chore: Fastlane integrated
+- feeat: in-app review added
+- feat: fource update done
+- feat: crashlatics added
+- splash screen workds

@@ -42,18 +42,32 @@ end
 # ---------------------------
 
 lane :playstore do
+  UI.message("🚀 Starting Flutter Play Store release")
   version_code = increment_flutter_build_number
   generate_changelog(version_code, "en-GB")
+  #  changelog_from_git_commits
 
   sh("cd .. && flutter clean")
+  sh("cd .. && flutter pub get")
   sh("cd .. && flutter build appbundle")
 
-  upload_to_play_store(
+  # upload_to_play_store(
+  #   track: "internal",
+  #   aab: "../build/app/outputs/bundle/release/app-release.aab",
+  #   skip_upload_metadata: false,
+  #   skip_upload_images: false,
+  #   skip_upload_screenshots: false,
+  #   skip_upload_changelogs: false,
+  #   skip_upload_apk: true,
+  # )
+
+    upload_to_play_store(
     track: "internal",
     aab: "../build/app/outputs/bundle/release/app-release.aab",
-    skip_upload_metadata: false,
-    skip_upload_images: false,
-    skip_upload_screenshots: false,
-    skip_upload_changelogs: false
+    json_key: ENV["PLAY_STORE_JSON_PATH"],
+    package_name: ENV["PACKAGE_NAME"],
+    skip_upload_apk: true
   )
+
+  UI.message("✅ Play Store upload completed")
 end
