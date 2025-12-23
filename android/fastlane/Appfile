@@ -1,2 +1,2 @@
-json_key_file("nightreader-fcac7cd59161.json")
-package_name("com.renga.nightreaderpro")
+json_key_file(ENV["PLAY_STORE_JSON_PATH"])
+package_name(ENV["PACKAGE_NAME"])

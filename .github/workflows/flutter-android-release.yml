@@ -12,78 +12,64 @@ jobs:
 
     env:
       PACKAGE_NAME: com.renga.nightreaderpro
-      PLAY_STORE_JSON_PATH: android/fastlane/play-store.json
+      # This matches the path used in the decoding step
+      PLAY_STORE_JSON_PATH: ./fastlane/play-store.json
 
     steps:
-      # -------------------------
-      # Checkout code
-      # -------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # -------------------------
-      # Java (Android requires it)
-      # -------------------------
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: "zulu"
           java-version: "17"
 
-      # -------------------------
-      # Flutter SDK
-      # -------------------------
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
 
-      # -------------------------
-      # Flutter dependencies
-      # -------------------------
       - name: Flutter pub get
         run: flutter pub get
 
-      # -------------------------
-      # Decode Play Store JSON
-      # -------------------------
+      # ---------------------------------------------------------
+      # DECODE SECRETS
+      # ---------------------------------------------------------
       - name: Decode Play Store service account
         run: |
           mkdir -p android/fastlane
           echo "${{ secrets.PLAY_STORE_JSON_BASE64 }}" | base64 --decode > android/fastlane/play-store.json
 
-      # -------------------------
-      # Decode Android Keystore
-      # -------------------------
       - name: Decode Android keystore
         run: |
           mkdir -p android/app
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
 
-      # -------------------------
-      # Create key.properties
-      # -------------------------
       - name: Create key.properties
         run: |
-          echo "storeFile=upload-keystore.jks" >> android/key.properties
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          cat <<EOF > android/key.properties
+          storeFile=upload-keystore.jks
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          EOF
 
-      # -------------------------
-      # Install Fastlane
-      # -------------------------
-      - name: Install Fastlane
-        run: sudo gem install fastlane -N
+      # ---------------------------------------------------------
+      # FASTLANE SETUP & RUN
+      # ---------------------------------------------------------
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          working-directory: android
 
-      # -------------------------
-      # Run Fastlane (Build + Upload)
-      # -------------------------
       - name: Build & Upload to Play Store
         env:
           PACKAGE_NAME: ${{ env.PACKAGE_NAME }}
           PLAY_STORE_JSON_PATH: ${{ env.PLAY_STORE_JSON_PATH }}
         run: |
           cd android
-          fastlane playstore
+          bundle exec fastlane playstore
