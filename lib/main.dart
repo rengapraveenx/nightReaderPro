@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nightreader/features/in_app_review/service/in_app_review_service.dart';
 import 'package:nightreader/firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,8 @@ Future<void> main() async {
   final showOnboarding = prefs.getBool('onboarding_complete') ?? false;
   final inAppReviewService = InAppReviewService(prefs);
   await inAppReviewService.incrementAppOpenCount();
+
+  await dotenv.load(fileName: ".env");
   runApp(
     MyApp(
       showOnboarding: showOnboarding,

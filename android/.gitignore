@@ -20,3 +20,5 @@ android/app/*.jks
 nightreader-*.json
 android/fastlane/*.json
 android/fastlane/**/*.json
+
+*.env
